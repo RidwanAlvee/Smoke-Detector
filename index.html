@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smoke Detector</title>
+</head>
+<body>
+    <h1>MQ-5 sensor code using Arduino:</h1>
+
+<p> int blueLed = 12;<br>
+int greenLed = 11;<br>
+int buzzer = 10;<br>
+int smokeA0 = A5;<br>
+// Your threshold value <br>
+int sensorThres = 150; <br>
+void setup() {<br>
+pinMode(blueLed, OUTPUT); <br>
+pinMode(greenLed, OUTPUT);<br>
+pinMode(buzzer, OUTPUT);<br>
+pinMode(smokeA0, INPUT);<br>
+Serial.begin(9600);<br>
+} <br>
+void loop() { <br>
+int analogSensor = analogRead(smokeA0);<br>
+Serial.print("Pin A0: ");<br>
+Serial.println(analogSensor);<br>
+// Checks if it has reached the threshold value <br>
+if (analogSensor > sensorThres)<br>
+{<br>
+digitalWrite(blueLed, HIGH);<br>
+digitalWrite(greenLed, LOW);<br>
+tone(buzzer, 1000, 200);<br>
+}<br>
+else <br>
+{<br>
+digitalWrite(blueLed, LOW); <br>
+digitalWrite(greenLed, HIGH); <br>
+noTone(buzzer);<br>
+}<br>
+delay(100);<br>
+}<br>
+</p>
+</body>
+</html>
